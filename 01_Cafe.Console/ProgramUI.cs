@@ -54,6 +54,7 @@ namespace _01_Cafe.ConsoleUI
                 Console.WriteLine("1. View all menu items");
                 Console.WriteLine("2. Add a new menu item");
                 Console.WriteLine("3. Delete a menu item");
+                Console.WriteLine("4. Exit application");
                 Console.WriteLine();
 
                 string input = Console.ReadLine();
@@ -69,12 +70,14 @@ namespace _01_Cafe.ConsoleUI
                     case "3":
                         DeleteMenuItem();
                         break;
+                    case "4":
+                        isRunning = false;
+                        continue;
                     default:
                         Console.WriteLine("Choose an available option");
                         break;
                 }
 
-                Console.WriteLine();
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
             }
@@ -82,14 +85,11 @@ namespace _01_Cafe.ConsoleUI
 
         private void ViewAllMenuItems()
         {
-            List<Menu> menuItems = _repository.GetAll();
-
             Console.Clear();
-            for (int i = 0; i < menuItems.Count; i++)
+            for (int i = 1; i <= _repository.Count; i++)
             {
-                Menu item = menuItems[i];
-                int itemNumber = i + 1;
-                Console.WriteLine($"#{itemNumber} - {item.Name} - ${item.Price}");
+                Menu item = _repository.Get(i);
+                Console.WriteLine($"#{i} - {item.Name} - ${item.Price}");
                 Console.WriteLine(item.Description);
                 Console.WriteLine($"Includes: {item.Ingredients}");
                 Console.WriteLine();
@@ -98,7 +98,44 @@ namespace _01_Cafe.ConsoleUI
 
         private void AddNewMenuItem()
         {
+            Console.Clear();
+            Menu menuItem = GetMenuItemFromUser();
+            _repository.Add(menuItem);
+            Console.WriteLine($"Menu item {menuItem.Name} successfully created");
+            Console.WriteLine();
+        }
 
+        private Menu GetMenuItemFromUser()
+        {
+            Menu menuItem = new Menu();
+
+            Console.Write("Enter the name of the new menu item: ");
+            menuItem.Name = Console.ReadLine();
+
+            Console.Write("Enter the description of the menu item: ");
+            menuItem.Description = Console.ReadLine();
+
+            Console.Write("Enter the ingredients of the menu item: ");
+            menuItem.Ingredients = Console.ReadLine();
+
+            Console.Write("Enter the price of the menu item: ");
+            menuItem.Price = GetPriceFromUser();
+
+            return menuItem;
+        }
+
+        private decimal GetPriceFromUser()
+        {
+            string input = Console.ReadLine();
+            
+            if (decimal.TryParse(input, out decimal price))
+            {
+                return price;
+            }
+            else
+            {
+                return 0.00m;
+            }
         }
 
         private void DeleteMenuItem()
@@ -106,16 +143,19 @@ namespace _01_Cafe.ConsoleUI
             ViewAllMenuItems();
             Console.Write("Enter the menu number to delete: ");
             int index = GetMenuNumberFromUser();
+            Menu item = _repository.Get(index);
             bool wasDeleted = _repository.Delete(index);
 
             if (wasDeleted)
             {
-                Console.WriteLine($"Menu item #{index} sucessfully deleted");
+                Console.WriteLine($"Menu item #{index} - {item.Name} sucessfully deleted");
             }
             else
             {
                 Console.WriteLine($"Menu item does not exist");
             }
+
+            Console.WriteLine();
         }
 
         private int GetMenuNumberFromUser()
@@ -123,7 +163,7 @@ namespace _01_Cafe.ConsoleUI
             string input = Console.ReadLine();
             if (int.TryParse(input, out int index))
             {
-                return index;  // Menu items start at #1, but repository index starts at 0
+                return index;
             }
             else
             {
