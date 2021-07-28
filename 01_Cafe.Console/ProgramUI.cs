@@ -123,7 +123,7 @@ namespace _01_Cafe.ConsoleUI
             string input = Console.ReadLine();
             if (int.TryParse(input, out int index))
             {
-                return index - 1;  // Menu items start at #1, but repository index starts at 0
+                return index;  // Menu items start at #1, but repository index starts at 0
             }
             else
             {

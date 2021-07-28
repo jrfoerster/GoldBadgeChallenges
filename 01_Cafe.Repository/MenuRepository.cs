@@ -33,7 +33,7 @@ namespace _01_Cafe.Repository
             //    }
             //}
             //return null;
-
+            menuNumber--;
             if (menuNumber >= 0 && menuNumber < _menuItems.Count)
             {
                 return _menuItems[menuNumber];
@@ -70,7 +70,7 @@ namespace _01_Cafe.Repository
             //    _menuItems.RemoveAt(index);
             //    return true;
             //}
-
+            menuNumber--;
             if (menuNumber >= 0 && menuNumber < _menuItems.Count)
             {
                 _menuItems.RemoveAt(menuNumber);

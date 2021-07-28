@@ -27,7 +27,7 @@ namespace _01_Cafe.Tests
         public void MenuRepository_Get()
         {
             string expected = "Double Bacon Burger Combo";
-            string actual = _repository.Get(0).Name;
+            string actual = _repository.Get(1).Name;
             Assert.AreEqual(expected, actual);
         }
 
@@ -44,9 +44,10 @@ namespace _01_Cafe.Tests
         [TestMethod]
         public void MenuRepository_Add()
         {
-            int index = _repository.Count;
+            
             Menu expected = new Menu() { Name = "Grilled Cheese Combo" };
             _repository.Add(expected);
+            int index = _repository.Count;
             Menu actual = _repository.Get(index);
             Assert.AreEqual(expected, actual);
         }
@@ -54,7 +55,7 @@ namespace _01_Cafe.Tests
         [TestMethod]
         public void MenuRepository_DeleteIsInRepo_ReturnsTrue()
         {
-            int testIndex = 0;
+            int testIndex = 1;
             bool condition = _repository.Delete(testIndex);
             Assert.IsTrue(condition);
         }
