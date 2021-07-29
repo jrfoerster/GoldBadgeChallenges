@@ -8,32 +8,19 @@ namespace _01_Cafe.Repository
 {
     public class MenuRepository
     {
-        private readonly List<Menu> _menuItems = new List<Menu>();
+        private readonly IList<Menu> _menuItems = new List<Menu>();
 
-        public int Count
-        {
-            get
-            {
-                return _menuItems.Count;
-            }
-        }
+        public int Count => _menuItems.Count;
 
         public void Add(Menu menuItem)
         {
             _menuItems.Add(menuItem);
+            menuItem.Number = _menuItems.Count;
         }
 
         public Menu Get(int menuNumber)
         {
-            //foreach (var menu in _menuItems)
-            //{
-            //    if (menu.Number == menuNumber)
-            //    {
-            //        return menu;
-            //    }
-            //}
-            //return null;
-            menuNumber--;
+            menuNumber--;  // Menu numbers start at 1, but are accessed internally starting at 0
             if (menuNumber >= 0 && menuNumber < _menuItems.Count)
             {
                 return _menuItems[menuNumber];
@@ -44,36 +31,18 @@ namespace _01_Cafe.Repository
             }
         }
 
-        public List<Menu> GetAll()
+        public IList<Menu> GetAll()
         {
-            return _menuItems.ToList();
+            return _menuItems;
         }
 
         public bool Delete(int menuNumber)
         {
-            //int index = -1;
-            //for (int i = 0; i < _menuItems.Count; i++)
-            //{
-            //    if (_menuItems[i].Number == menuNumber)
-            //    {
-            //        index = i;
-            //        break;
-            //    }
-            //}
-
-            //if (index == -1)
-            //{
-            //    return false;
-            //}
-            //else
-            //{
-            //    _menuItems.RemoveAt(index);
-            //    return true;
-            //}
             menuNumber--;
             if (menuNumber >= 0 && menuNumber < _menuItems.Count)
             {
                 _menuItems.RemoveAt(menuNumber);
+                UpdateMenuNumbersAfter(menuNumber);
                 return true;
             }
             else
@@ -82,9 +51,12 @@ namespace _01_Cafe.Repository
             }
         }
 
-        public bool Delete(Menu menu)
+        private void UpdateMenuNumbersAfter(int index)
         {
-            return _menuItems.Remove(menu);
+            for (int i = index; i < _menuItems.Count; i++)
+            {
+                _menuItems[i].Number = i + 1;
+            }
         }
     }
 }

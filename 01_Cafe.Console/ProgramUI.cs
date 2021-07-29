@@ -10,6 +10,7 @@ namespace _01_Cafe.ConsoleUI
     public class ProgramUI
     {
         private readonly MenuRepository _repository = new MenuRepository();
+
         public void Run()
         {
             AddDefaultMenuItems();
@@ -40,6 +41,21 @@ namespace _01_Cafe.ConsoleUI
                 Description = "Better than the best, a fried chicken sandwich with our signature spicy sauce, plus steak fries and a refreshing drink",
                 Ingredients = "Spicy Chicken Sandwich, Large Fries, Large Drink",
                 Price = 9.99m
+            });
+
+            _repository.Add(new Menu()
+            {
+                Name = "Double Spicy Chicken Combo",
+                Description = "Better than the best, a fried chicken sandwich with our signature spicy sauce, plus steak fries and a refreshing drink",
+                Ingredients = "Double Spicy Chicken Sandwich, Large Fries, Large Drink",
+                Price = 15.99m
+            });
+            _repository.Add(new Menu()
+            {
+                Name = "Triple Spicy Chicken Combo",
+                Description = "Better than the best, a fried chicken sandwich with our signature spicy sauce, plus steak fries and a refreshing drink",
+                Ingredients = "Triple Spicy Chicken Sandwich, Large Fries, Large Drink",
+                Price = 21.99m
             });
         }
 
@@ -86,14 +102,18 @@ namespace _01_Cafe.ConsoleUI
         private void ViewAllMenuItems()
         {
             Console.Clear();
-            for (int i = 1; i <= _repository.Count; i++)
+            foreach (var item in _repository.GetAll())
             {
-                Menu item = _repository.Get(i);
-                Console.WriteLine($"#{i} - {item.Name} - ${item.Price}");
-                Console.WriteLine(item.Description);
-                Console.WriteLine($"Includes: {item.Ingredients}");
-                Console.WriteLine();
+                PrintMenuItem(item);
             }
+        }
+
+        private void PrintMenuItem(Menu item)
+        {
+            Console.WriteLine($"#{item.Number} - {item.Name} - ${item.Price}");
+            Console.WriteLine(item.Description);
+            Console.WriteLine($"Includes: {item.Ingredients}");
+            Console.WriteLine();
         }
 
         private void AddNewMenuItem()
@@ -127,7 +147,7 @@ namespace _01_Cafe.ConsoleUI
         private decimal GetPriceFromUser()
         {
             string input = Console.ReadLine();
-            
+
             if (decimal.TryParse(input, out decimal price))
             {
                 return price;
