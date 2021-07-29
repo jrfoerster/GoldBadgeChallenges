@@ -50,6 +50,7 @@ namespace _01_Cafe.ConsoleUI
                 Ingredients = "Double Spicy Chicken Sandwich, Large Fries, Large Drink",
                 Price = 15.99m
             });
+
             _repository.Add(new Menu()
             {
                 Name = "Triple Spicy Chicken Combo",
