@@ -1,0 +1,7 @@
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.ConsoleUI\bin\Debug\02_Claims.ConsoleUI.exe.config
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.ConsoleUI\bin\Debug\02_Claims.ConsoleUI.exe
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.ConsoleUI\bin\Debug\02_Claims.ConsoleUI.pdb
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.ConsoleUI\obj\Debug\02_Claims.ConsoleUI.csproj.AssemblyReference.cache
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.ConsoleUI\obj\Debug\02_Claims.ConsoleUI.csproj.CoreCompileInputs.cache
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.ConsoleUI\obj\Debug\02_Claims.ConsoleUI.exe
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.ConsoleUI\obj\Debug\02_Claims.ConsoleUI.pdb
