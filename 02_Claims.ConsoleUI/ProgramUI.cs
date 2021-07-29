@@ -1,4 +1,6 @@
-﻿namespace _02_Claims.ConsoleUI
+﻿using System;
+
+namespace _02_Claims.ConsoleUI
 {
     public class ProgramUI
     {

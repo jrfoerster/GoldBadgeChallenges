@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _02_Claims.ConsoleUI
 {
@@ -12,6 +8,7 @@ namespace _02_Claims.ConsoleUI
         {
             var program = new ProgramUI();
             program.Run();
+            Console.WriteLine();
         }
     }
 }
