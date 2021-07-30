@@ -1,0 +1,16 @@
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.Tests\bin\Debug\02_Claims.Tests.dll
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.Tests\bin\Debug\02_Claims.Tests.pdb
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.Tests\bin\Debug\02_Claims.Repository.dll
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.Tests\bin\Debug\02_Claims.Repository.pdb
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.Tests\obj\Debug\02_Claims.Tests.csproj.AssemblyReference.cache
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.Tests\obj\Debug\02_Claims.Tests.csproj.CoreCompileInputs.cache
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.Tests\obj\Debug\02_Claims.Tests.csproj.CopyComplete
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.Tests\obj\Debug\02_Claims.Tests.dll
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.Tests\obj\Debug\02_Claims.Tests.pdb
