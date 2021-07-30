@@ -1,12 +1,49 @@
-﻿using System;
+﻿using _02_Claims.Repository;
+using System;
 
 namespace _02_Claims.ConsoleUI
 {
     public class ProgramUI
     {
+        private readonly ClaimsRepository _repository = new ClaimsRepository();
+
         public void Run()
         {
+            AddDefaultClaims();
             MainMenu();
+        }
+
+        private void AddDefaultClaims()
+        {
+            _repository.Add(new Claim()
+            {
+                ClaimID = 1,
+                Type = ClaimType.Car,
+                Description = "Car accident on 465",
+                ClaimAmount = 400.00m,
+                DateOfIncident = DateTime.Parse("4/25/18"),
+                DateOfClaim = DateTime.Parse("4/27/18")
+            });
+
+            _repository.Add(new Claim()
+            {
+                ClaimID = 2,
+                Type = ClaimType.Home,
+                Description = "House fire in kitchen",
+                ClaimAmount = 4000.00m,
+                DateOfIncident = DateTime.Parse("4/11/18"),
+                DateOfClaim = DateTime.Parse("4/12/18")
+            });
+
+            _repository.Add(new Claim()
+            {
+                ClaimID = 3,
+                Type = ClaimType.Theft,
+                Description = "Stolen pancakes",
+                ClaimAmount = 4.00m,
+                DateOfIncident = DateTime.Parse("4/27/18"),
+                DateOfClaim = DateTime.Parse("6/01/18")
+            });
         }
 
         private void MainMenu()
@@ -50,6 +87,15 @@ namespace _02_Claims.ConsoleUI
         }
 
         private void SeeAllClaims()
+        {
+            Console.Clear();
+            foreach (Claim claim in _repository.GetAll())
+            {
+                PrintClaim(claim);
+            }
+        }
+
+        private void PrintClaim(Claim claim)
         {
             throw new NotImplementedException();
         }
