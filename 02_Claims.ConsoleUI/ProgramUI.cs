@@ -116,6 +116,7 @@ namespace _02_Claims.ConsoleUI
         {
             Console.Clear();
             Console.WriteLine("Here are the details for the next claim to be handled:");
+            Console.WriteLine();
             Claim next = _repository.SeeNextClaim();
             PrintClaimVertical(next);
             Console.WriteLine();
