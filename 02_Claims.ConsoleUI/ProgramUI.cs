@@ -93,6 +93,7 @@ namespace _02_Claims.ConsoleUI
             {
                 PrintClaimHorizontal(claim);
             }
+            Console.WriteLine();
         }
 
         private void PrintClaimHorizontal(Claim claim)
@@ -113,7 +114,34 @@ namespace _02_Claims.ConsoleUI
 
         private void TakeCareOfNextClaim()
         {
-            throw new NotImplementedException();
+            Console.Clear();
+            Console.WriteLine("Here are the details for the next claim to be handled:");
+            Claim next = _repository.SeeNextClaim();
+            PrintClaimVertical(next);
+            Console.WriteLine();
+            AskToHandleNextClaim();
+            Console.WriteLine();
+        }
+
+        private void AskToHandleNextClaim()
+        {
+            Console.Write("Do you want to deal with this claim now (y/n)? ");
+            string input = Console.ReadLine().ToLower();
+            bool answer = input == "y";
+            HandleClaimIfTrue(answer);
+        }
+
+        private void HandleClaimIfTrue(bool answer)
+        {
+            if (answer)
+            {
+                Console.WriteLine("Claim processed!");
+                _repository.HandleNextClaim();
+            }
+            else
+            {
+                Console.WriteLine("Claim not processed, returning to Main Menu");
+            }
         }
 
         private void EnterNewClaim()
