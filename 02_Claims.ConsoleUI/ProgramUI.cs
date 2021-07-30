@@ -91,13 +91,24 @@ namespace _02_Claims.ConsoleUI
             Console.Clear();
             foreach (Claim claim in _repository.GetAll())
             {
-                PrintClaim(claim);
+                PrintClaimHorizontal(claim);
             }
         }
 
-        private void PrintClaim(Claim claim)
+        private void PrintClaimHorizontal(Claim claim)
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"ID: {claim.ClaimID}, Type: {claim.Type}, Description: {claim.Description}, Amount: ${claim.ClaimAmount}, DateOfIncident: {claim.DateOfIncident.ToShortDateString()}, DateOfClaim: {claim.DateOfClaim.ToShortDateString()}, IsValid: {claim.IsValid}");
+        }
+
+        private void PrintClaimVertical(Claim claim)
+        {
+            Console.WriteLine($"ClaimID: {claim.ClaimID}");
+            Console.WriteLine($"Type: {claim.Type}");
+            Console.WriteLine($"Description: {claim.Description}");
+            Console.WriteLine($"Amount: ${claim.ClaimAmount}");
+            Console.WriteLine($"DateOfIncident: {claim.DateOfIncident.ToShortDateString()}");
+            Console.WriteLine($"DateOfClaim: {claim.DateOfClaim.ToShortDateString()}");
+            Console.WriteLine($"IsValid: {claim.IsValid}");
         }
 
         private void TakeCareOfNextClaim()

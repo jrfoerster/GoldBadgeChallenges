@@ -5,3 +5,6 @@ D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.Conso
 D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.ConsoleUI\obj\Debug\02_Claims.ConsoleUI.csproj.CoreCompileInputs.cache
 D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.ConsoleUI\obj\Debug\02_Claims.ConsoleUI.exe
 D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.ConsoleUI\obj\Debug\02_Claims.ConsoleUI.pdb
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.ConsoleUI\bin\Debug\02_Claims.Repository.dll
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.ConsoleUI\bin\Debug\02_Claims.Repository.pdb
+D:\ElevenFiftyProjects\GoldBadge\Assignments\GoldBadgeChallenges\02_Claims.ConsoleUI\obj\Debug\02_Claims.ConsoleUI.csproj.CopyComplete
