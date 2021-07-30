@@ -20,7 +20,7 @@ namespace _02_Claims.Repository
             return _claims.Peek();
         }
 
-        public Claim GetNextClaim()
+        public Claim HandleNextClaim()
         {
             return _claims.Dequeue();
         }
