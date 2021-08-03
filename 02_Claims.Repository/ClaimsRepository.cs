@@ -10,6 +10,8 @@ namespace _02_Claims.Repository
     {
         private readonly Queue<Claim> _claims = new Queue<Claim>();
 
+        public int Count => _claims.Count;
+
         public void Add(Claim claim)
         {
             _claims.Enqueue(claim);
