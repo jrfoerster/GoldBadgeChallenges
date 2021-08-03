@@ -18,7 +18,7 @@ namespace _02_Claims.ConsoleUI
             _repository.Add(new Claim()
             {
                 ClaimID = 1,
-                Type = ClaimType.Car,
+                TypeOfClaim = ClaimType.Car,
                 Description = "Car accident on 465",
                 ClaimAmount = 400.00m,
                 DateOfIncident = DateTime.Parse("4/25/18"),
@@ -28,7 +28,7 @@ namespace _02_Claims.ConsoleUI
             _repository.Add(new Claim()
             {
                 ClaimID = 2,
-                Type = ClaimType.Home,
+                TypeOfClaim = ClaimType.Home,
                 Description = "House fire in kitchen",
                 ClaimAmount = 4000.00m,
                 DateOfIncident = DateTime.Parse("4/11/18"),
@@ -38,7 +38,7 @@ namespace _02_Claims.ConsoleUI
             _repository.Add(new Claim()
             {
                 ClaimID = 3,
-                Type = ClaimType.Theft,
+                TypeOfClaim = ClaimType.Theft,
                 Description = "Stolen pancakes",
                 ClaimAmount = 4.00m,
                 DateOfIncident = DateTime.Parse("4/27/18"),
@@ -89,7 +89,7 @@ namespace _02_Claims.ConsoleUI
         private void SeeAllClaims()
         {
             Console.Clear();
-            foreach (Claim claim in _repository.GetAll())
+            foreach (var claim in _repository.GetAll())
             {
                 PrintClaimHorizontal(claim);
             }
@@ -98,13 +98,13 @@ namespace _02_Claims.ConsoleUI
 
         private void PrintClaimHorizontal(Claim claim)
         {
-            Console.WriteLine($"ID: {claim.ClaimID}, Type: {claim.Type}, Description: {claim.Description}, Amount: ${claim.ClaimAmount}, DateOfIncident: {claim.DateOfIncident.ToShortDateString()}, DateOfClaim: {claim.DateOfClaim.ToShortDateString()}, IsValid: {claim.IsValid}");
+            Console.WriteLine($"ID: {claim.ClaimID}, Type: {claim.TypeOfClaim}, Description: {claim.Description}, Amount: ${claim.ClaimAmount}, DateOfIncident: {claim.DateOfIncident.ToShortDateString()}, DateOfClaim: {claim.DateOfClaim.ToShortDateString()}, IsValid: {claim.IsValid}");
         }
 
         private void PrintClaimVertical(Claim claim)
         {
             Console.WriteLine($"ClaimID: {claim.ClaimID}");
-            Console.WriteLine($"Type: {claim.Type}");
+            Console.WriteLine($"Type: {claim.TypeOfClaim}");
             Console.WriteLine($"Description: {claim.Description}");
             Console.WriteLine($"Amount: ${claim.ClaimAmount}");
             Console.WriteLine($"DateOfIncident: {claim.DateOfIncident.ToShortDateString()}");
@@ -115,6 +115,11 @@ namespace _02_Claims.ConsoleUI
         private void TakeCareOfNextClaim()
         {
             Console.Clear();
+            if (_repository.Count <= 0)
+            {
+                Console.WriteLine("No claims!");
+                return;
+            }
             Console.WriteLine("Here are the details for the next claim to be handled:");
             Console.WriteLine();
             Claim next = _repository.SeeNextClaim();
@@ -148,7 +153,78 @@ namespace _02_Claims.ConsoleUI
 
         private void EnterNewClaim()
         {
-            throw new NotImplementedException();
+            Console.Clear();
+            Console.WriteLine("Enter new claim information");
+            Console.WriteLine();
+            var claim = AskForNewClaim();
+            Console.WriteLine($"IsValid: {claim.IsValid}");
+            Console.WriteLine();
+            _repository.Add(claim);
+        }
+
+        private Claim AskForNewClaim()
+        {
+            var claim = new Claim();
+            claim.ClaimID = AskForClaimID();
+            claim.TypeOfClaim = AskForClaimType();
+            claim.Description = AskForClaimDescription();
+            claim.ClaimAmount = AskForClaimAmount();
+            claim.DateOfIncident = AskForDateOfIncident();
+            claim.DateOfClaim = AskForDateOfClaim();
+            return claim;
+        }
+
+        private int AskForClaimID()
+        {
+            Console.Write("Enter the claim id: ");
+            string input = Console.ReadLine();
+            return int.Parse(input);
+        }
+
+        private ClaimType AskForClaimType()
+        {
+            Console.Write("Enter the claim type: ");
+            string input = Console.ReadLine().ToLower();
+            
+            switch (input)
+            {
+                case "car":
+                    return ClaimType.Car;
+                case "home":
+                    return ClaimType.Home;
+                case "theft":
+                    return ClaimType.Theft;
+                default:
+                    return ClaimType.Car;
+            }
+        }
+
+        private string AskForClaimDescription()
+        {
+            Console.Write("Enter a claim description: ");
+            string input = Console.ReadLine();
+            return input;
+        }
+
+        private decimal AskForClaimAmount()
+        {
+            Console.Write("Enter the claim amount: $");
+            string input = Console.ReadLine();
+            return decimal.Parse(input);
+        }
+
+        private DateTime AskForDateOfIncident()
+        {
+            Console.Write("Enter the date of incident: ");
+            string input = Console.ReadLine();
+            return DateTime.Parse(input);
+        }
+
+        private DateTime AskForDateOfClaim()
+        {
+            Console.Write("Enter the date of claim: ");
+            string input = Console.ReadLine();
+            return DateTime.Parse(input);
         }
     }
 }
