@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace _01_Cafe.Repository
 {
@@ -38,11 +34,11 @@ namespace _01_Cafe.Repository
 
         public bool Delete(int menuNumber)
         {
-            menuNumber--;
-            if (menuNumber >= 0 && menuNumber < _menuItems.Count)
+            int index = menuNumber - 1;
+            if (index >= 0 && index < _menuItems.Count)
             {
-                _menuItems.RemoveAt(menuNumber);
-                UpdateMenuNumbersAfter(menuNumber);
+                _menuItems.RemoveAt(index);
+                UpdateMenuNumbersAfter(index);
                 return true;
             }
             else
