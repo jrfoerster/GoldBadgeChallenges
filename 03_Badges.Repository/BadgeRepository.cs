@@ -8,5 +8,30 @@ namespace _03_Badges.Repository
 {
     public class BadgeRepository
     {
+        private readonly IDictionary<int, Badge> _badges = new Dictionary<int, Badge>();
+
+        public bool Add(Badge badge)
+        {
+            int key = badge.ID;
+            if (_badges.ContainsKey(key))
+            {
+                return false;
+            }
+            else
+            {
+                _badges[key] = badge;
+                return true;
+            }
+        }
+
+        public Badge Get(int key)
+        {
+            return _badges[key];
+        }
+
+        public IList<Badge> GetAll()
+        {
+            return _badges.Values.ToList();
+        }
     }
 }
