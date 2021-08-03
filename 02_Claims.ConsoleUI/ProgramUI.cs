@@ -120,20 +120,21 @@ namespace _02_Claims.ConsoleUI
             Claim next = _repository.SeeNextClaim();
             PrintClaimVertical(next);
             Console.WriteLine();
-            AskToHandleNextClaim();
+            bool answer = AskToHandleNextClaim();
+            HandleClaimIfTrue(answer);
             Console.WriteLine();
         }
 
-        private void AskToHandleNextClaim()
+        private bool AskToHandleNextClaim()
         {
             Console.Write("Do you want to deal with this claim now (y/n)? ");
             string input = Console.ReadLine().ToLower();
-            bool answer = input == "y";
-            HandleClaimIfTrue(answer);
+            return input == "y";
         }
 
         private void HandleClaimIfTrue(bool answer)
         {
+            Console.WriteLine();
             if (answer)
             {
                 Console.WriteLine("Claim processed!");
