@@ -10,6 +10,8 @@ namespace _03_Badges.Repository
     {
         private readonly IDictionary<int, Badge> _badges = new Dictionary<int, Badge>();
 
+        public int Count => _badges.Count;
+
         public bool Add(Badge badge)
         {
             int key = badge.ID;
@@ -22,6 +24,11 @@ namespace _03_Badges.Repository
                 _badges[key] = badge;
                 return true;
             }
+        }
+
+        public bool Contains(int key)
+        {
+            return _badges.ContainsKey(key);
         }
 
         public Badge Get(int key)
