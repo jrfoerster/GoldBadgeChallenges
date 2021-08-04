@@ -148,21 +148,26 @@ namespace _03_Badges.ConsoleUI
 
         private void WriteEditBadge(Badge badge)
         {
-            Console.Write($"Badge {badge.ID} has access to ");
+            string doorString = AccessToDoorString(badge);
+            Console.Write($"Badge {badge.ID} has access to {doorString}");
+            WriteDoors(badge.Doors);
+            Console.WriteLine();
+        }
+
+        private string AccessToDoorString(Badge badge)
+        {
             if (badge.Doors.Count == 0)
             {
-                Console.Write("no doors");
+                return "no doors";
             }
             else if (badge.Doors.Count == 1)
             {
-                Console.Write("door ");
+                return "door ";
             }
             else
             {
-                Console.Write("doors ");
+                return "doors ";
             }
-            WriteDoors(badge.Doors);
-            Console.WriteLine();
         }
 
         private void AddDoorsTo(Badge badge)
@@ -173,7 +178,8 @@ namespace _03_Badges.ConsoleUI
                 badge.Doors.Add(door);
             }
             Console.WriteLine();
-            Console.WriteLine("Doors added");
+            string doorString = DoorOrDoors(doors.Length);
+            Console.WriteLine($"{doorString} added");
             WriteEditBadge(badge);
         }
 
@@ -185,14 +191,26 @@ namespace _03_Badges.ConsoleUI
                 badge.Doors.Remove(door);
             }
             Console.WriteLine();
-            Console.WriteLine("Doors removed");
+            string doorString = DoorOrDoors(doors.Length);
+            Console.WriteLine($"{doorString} removed");
             WriteEditBadge(badge);
+        }
+
+        private string DoorOrDoors(int length)
+        {
+            if (length == 1)
+            {
+                return "Door";
+            }
+            else
+            {
+                return "Doors";
+            }
         }
 
         private void RemoveAllDoorsFrom(Badge badge)
         {
             badge.Doors.Clear();
-            Console.WriteLine();
             Console.WriteLine($"All doors removed from Badge {badge.ID}");
         }
 
