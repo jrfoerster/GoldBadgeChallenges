@@ -11,7 +11,7 @@ namespace _03_Badges.Tests
         public void BadgeRepository_AddBadgeWithUniqueID_ReturnsTrue()
         {
             var repository = new BadgeRepository();
-            var badge = new Badge() { ID = 0 };
+            var badge = new Badge(0);
             bool condition = repository.Add(badge);
             Assert.IsTrue(condition);
         }
@@ -20,10 +20,9 @@ namespace _03_Badges.Tests
         public void BadgeRepository_AddBadgeWithDuplicateID_ReturnsFalse()
         {
             var repository = new BadgeRepository();
-            int id = 0; 
-            repository.Add(new Badge() { ID = id });
-            bool condition = repository.Add(new Badge() { ID = id });
-
+            int id = 0;
+            repository.Add(new Badge(id));
+            bool condition = repository.Add(new Badge(id));
             Assert.IsFalse(condition);
         }
     }

@@ -8,8 +8,13 @@ namespace _03_Badges.Repository
 {
     public class Badge
     {
-        public int ID { get; set; }
+        public int ID { get; }
         public IList<string> Doors { get; } = new List<string>();
         public string Name { get; set; }
+
+        public Badge(int id)
+        {
+            ID = id;
+        }
     }
 }
