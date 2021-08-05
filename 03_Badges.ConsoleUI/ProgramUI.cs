@@ -117,7 +117,7 @@ namespace _03_Badges.ConsoleUI
             return TrimInputToList(doors);
         }
 
-        private IList<string> TrimInputToList(string[] doors)
+        private IList<string> TrimInputToList(IEnumerable<string> doors)
         {
             var output = new List<string>();
             foreach (string door in doors)
@@ -179,14 +179,6 @@ namespace _03_Badges.ConsoleUI
             }
         }
 
-        private void WriteBadgeSentence(Badge badge)
-        {
-            string doorString = DoorOrDoors(badge.Doors.Count).ToLower();
-            Console.Write($"Badge {badge.ID} has access to {doorString} ");
-            WriteDoors(badge.Doors);
-            Console.WriteLine();
-        }
-
         private void AddDoorsTo(Badge badge)
         {
             IList<string> doors = AskForDoors();
@@ -213,22 +205,6 @@ namespace _03_Badges.ConsoleUI
             WriteBadgeSentence(badge);
         }
 
-        private string DoorOrDoors(int length)
-        {
-            if (length == 0)
-            {
-                return "No doors";
-            }
-            else if (length == 1)
-            {
-                return "Door";
-            }
-            else
-            {
-                return "Doors";
-            }
-        }
-
         private void RemoveAllDoorsFrom(Badge badge)
         {
             badge.Doors.Clear();
@@ -239,12 +215,21 @@ namespace _03_Badges.ConsoleUI
         {
             Console.Clear();
             Console.WriteLine("Badge - Door Access");
+            Console.WriteLine();
 
             foreach (var badge in _repository.GetAll())
             {
                 WriteBadge(badge);
             }
 
+            Console.WriteLine();
+        }
+
+        private void WriteBadgeSentence(Badge badge)
+        {
+            string doorString = DoorOrDoors(badge.Doors.Count).ToLower();
+            Console.Write($"Badge {badge.ID} has access to {doorString} ");
+            WriteDoors(badge.Doors);
             Console.WriteLine();
         }
 
@@ -264,6 +249,19 @@ namespace _03_Badges.ConsoleUI
                 {
                     Console.Write(", ");
                 }
+            }
+        }
+
+        private string DoorOrDoors(int count)
+        {
+            switch (count)
+            {
+                case 0:
+                    return "No doors";
+                case 1:
+                    return "Door";
+                default:
+                    return "Doors";
             }
         }
     }
