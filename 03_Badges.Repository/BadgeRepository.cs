@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace _03_Badges.Repository
 {
@@ -12,7 +8,7 @@ namespace _03_Badges.Repository
 
         public int Count => _badges.Count;
 
-        public bool Add(Badge badge)
+        public bool AddSafe(Badge badge)
         {
             int key = badge.ID;
             if (_badges.ContainsKey(key))
@@ -21,9 +17,14 @@ namespace _03_Badges.Repository
             }
             else
             {
-                _badges[key] = badge;
+                _badges.Add(key, badge);
                 return true;
             }
+        }
+
+        public void Add(Badge badge)
+        {
+            _badges.Add(badge.ID, badge);
         }
 
         public bool Contains(int key)
@@ -36,9 +37,9 @@ namespace _03_Badges.Repository
             return _badges[key];
         }
 
-        public IList<Badge> GetAll()
+        public IEnumerable<Badge> GetAll()
         {
-            return _badges.Values.ToList();
+            return _badges.Values;
         }
     }
 }
