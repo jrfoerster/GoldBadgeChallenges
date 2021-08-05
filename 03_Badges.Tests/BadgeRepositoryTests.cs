@@ -12,7 +12,7 @@ namespace _03_Badges.Tests
         {
             var repository = new BadgeRepository();
             var badge = new Badge(0);
-            bool condition = repository.Add(badge);
+            bool condition = repository.AddSafe(badge);
             Assert.IsTrue(condition);
         }
 
@@ -21,8 +21,8 @@ namespace _03_Badges.Tests
         {
             var repository = new BadgeRepository();
             int id = 0;
-            repository.Add(new Badge(id));
-            bool condition = repository.Add(new Badge(id));
+            repository.AddSafe(new Badge(id));
+            bool condition = repository.AddSafe(new Badge(id));
             Assert.IsFalse(condition);
         }
     }
