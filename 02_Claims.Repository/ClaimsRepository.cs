@@ -27,9 +27,9 @@ namespace _02_Claims.Repository
             return _claims.Dequeue();
         }
 
-        public IList<Claim> GetAll()
+        public IEnumerable<Claim> GetAll()
         {
-            return _claims.ToList();
+            return _claims;
         }
     }
 }
