@@ -1,9 +1,6 @@
 ﻿using _03_Badges.Repository;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace _03_Badges.ConsoleUI
 {
@@ -19,12 +16,12 @@ namespace _03_Badges.ConsoleUI
 
         private void AddDefaultBadges()
         {
-            CreateAndAddBadge(12345, new string[] { "A7" });
-            CreateAndAddBadge(22345, new string[] { "A1", "A4", "B1", "B2" });
-            CreateAndAddBadge(32345, new string[] { "A4", "A5" });
+            CreateAndAddBadge(12345, "A7");
+            CreateAndAddBadge(22345, "A1", "A4", "B1", "B2");
+            CreateAndAddBadge(32345, "A4", "A5");
         }
 
-        private void CreateAndAddBadge(int id, IEnumerable<string> doors)
+        private void CreateAndAddBadge(int id, params string[] doors)
         {
             var badge = new Badge(id, doors);
             _repository.Add(badge);
@@ -88,15 +85,28 @@ namespace _03_Badges.ConsoleUI
                 var badge = new Badge(id, doors);
                 _repository.Add(badge);
                 Console.WriteLine();
-                WriteEditBadge(badge);
+                WriteBadgeSentence(badge);
             }
         }
 
         private int AskForID()
         {
-            Console.Write("Enter badge number: ");
-            string input = Console.ReadLine();
-            return int.Parse(input);
+            int id;
+            bool isAsking = true;
+            do
+            {
+                Console.Write("Enter badge number: ");
+                string input = Console.ReadLine();
+                if (int.TryParse(input, out id))
+                {
+                    isAsking = false;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input!");
+                }
+            } while (isAsking);
+            return id;
         }
 
         private IList<string> AskForDoors()
@@ -104,7 +114,11 @@ namespace _03_Badges.ConsoleUI
             Console.Write("Enter doors separated by comma: ");
             string input = Console.ReadLine();
             string[] doors = input.Split(',');
+            return TrimInputToList(doors);
+        }
 
+        private IList<string> TrimInputToList(string[] doors)
+        {
             var output = new List<string>();
             foreach (string door in doors)
             {
@@ -114,7 +128,6 @@ namespace _03_Badges.ConsoleUI
                     output.Add(d);
                 }
             }
-
             return output;
             //return doors.Select(x => x.Trim()).Where(x => x != string.Empty).ToList();
         }
@@ -139,7 +152,7 @@ namespace _03_Badges.ConsoleUI
         private void EditBadgeSubMenu(Badge badge)
         {
             Console.Clear();
-            WriteEditBadge(badge);
+            WriteBadgeSentence(badge);
             Console.WriteLine();
             Console.WriteLine("What would you like to do?");
             Console.WriteLine("1. Add doors");
@@ -166,7 +179,7 @@ namespace _03_Badges.ConsoleUI
             }
         }
 
-        private void WriteEditBadge(Badge badge)
+        private void WriteBadgeSentence(Badge badge)
         {
             string doorString = DoorOrDoors(badge.Doors.Count).ToLower();
             Console.Write($"Badge {badge.ID} has access to {doorString} ");
@@ -184,7 +197,7 @@ namespace _03_Badges.ConsoleUI
             Console.WriteLine();
             string doorString = DoorOrDoors(doors.Count);
             Console.WriteLine($"{doorString} added");
-            WriteEditBadge(badge);
+            WriteBadgeSentence(badge);
         }
 
         private void RemoveDoorsFrom(Badge badge)
@@ -197,7 +210,7 @@ namespace _03_Badges.ConsoleUI
             Console.WriteLine();
             string doorString = DoorOrDoors(doors.Count);
             Console.WriteLine($"{doorString} removed");
-            WriteEditBadge(badge);
+            WriteBadgeSentence(badge);
         }
 
         private string DoorOrDoors(int length)
